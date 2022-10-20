@@ -25,9 +25,9 @@ public class CustomerTest {
 
   @Test
   public void testAddRental() {
-    Customer customer2 = new CustomerBuilder().withName("Julia").build();
-    Rental rental1 = new Rental(GONE_WITH_THE_WIND, 3); // 3 day rental
-    customer2.addRental(rental1);
+    Customer julia = new CustomerBuilder().withName("Julia").build();
+    Rental rental = new Rental(GONE_WITH_THE_WIND, 3);
+    julia.addRental(rental);
   }
 
   @Test

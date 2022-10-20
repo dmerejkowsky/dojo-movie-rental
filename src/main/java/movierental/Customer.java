@@ -22,34 +22,15 @@ public class Customer {
   }
 
   public String statement() {
-    String result = getHeader();
+    var textReport = new TextReport();
+    String result = textReport.getHeader(getName());
     for (Rental rental : _rentals) {
-      result += getRow(rental);
+      result += textReport.getRow(rental);
     }
-    result += getFooter();
+    result += textReport.getFooter(getTotalCharge(), getTotalFrequentRenterPoints());
     return result;
   }
 
-  private String getFooter() {
-    String result = "";
-    double totalAmount = getTotalCharge();
-    int frequentRenterPoints = getTotalFrequentRenterPoints();
-
-    // add footer lines
-    result += "Amount owed is " + totalAmount + "\n";
-    result += "You earned " + frequentRenterPoints + " frequent renter points";
-    return result;
-  }
-
-  private String getHeader() {
-    return "Rental Record for " + getName() + "\n";
-  }
-
-  private String getRow(Rental rental) {
-    var movie = rental.getMovie();
-    double charge = rental.getCharge();
-    return "\t" + movie.getTitle() + "\t" + charge + "\n";
-  }
 
   public double getTotalCharge() {
     return _rentals.stream().mapToDouble(Rental::getCharge).sum();
