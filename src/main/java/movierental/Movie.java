@@ -8,21 +8,22 @@ public class Movie {
 
   private final String _title;
   private final int _priceCodeInt;
+  private final PriceCode _priceCode;
 
   public Movie(String title, int priceCode) {
     _title = title;
     _priceCodeInt = priceCode;
+    _priceCode = switch (priceCode) {
+      case REGULAR -> new RegularPriceCode();
+      case CHILDRENS -> new ChildrenPriceCode();
+      case NEW_RELEASE -> new NewReleasePriceCode();
+      default -> throw new IllegalArgumentException();
+    };
   }
 
 
   double getCharge(int daysRented) {
-    double charge = 0;
-    return switch (getPriceCode()) {
-      case Movie.REGULAR -> new RegularPriceCode().getCharge(daysRented);
-      case Movie.NEW_RELEASE -> new NewReleasePriceCode().getCharge(daysRented);
-      case Movie.CHILDRENS -> new ChildrenPriceCode().getCharge(daysRented);
-      default -> charge;
-    };
+    return _priceCode.getCharge(daysRented);
   }
 
   int getFrequentRenterPoints(int daysRented) {
