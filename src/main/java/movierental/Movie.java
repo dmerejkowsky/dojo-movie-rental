@@ -14,9 +14,9 @@ public class Movie {
     _priceCode = priceCode;
   }
 
-  static double getCharge(Movie movie, int daysRented) {
+  double getCharge(int daysRented) {
     double charge = 0;
-    switch (movie.getPriceCode()) {
+    switch (getPriceCode()) {
       case Movie.REGULAR:
         charge += 2;
         if (daysRented > 2)
