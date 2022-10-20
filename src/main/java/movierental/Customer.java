@@ -26,7 +26,7 @@ public class Customer {
     String result = "Rental Record for " + getName() + "\n";
 
     for (Rental rental : _rentals) {
-      frequentRenterPoints += Rental.getFrequentRenterPoints(rental);
+      frequentRenterPoints += rental.getFrequentRenterPoints();
 
       // show figures for this rental
       double charge = rental.getCharge();
