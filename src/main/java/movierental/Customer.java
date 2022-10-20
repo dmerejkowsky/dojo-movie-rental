@@ -22,22 +22,9 @@ public class Customer {
   }
 
   public String statement() {
-    var textReport = new TextReport();
-    String result = textReport.getHeader(getName());
-    for (Rental rental : _rentals) {
-      result += textReport.getRow(rental);
-    }
-    result += textReport.getFooter(getTotalCharge(), getTotalFrequentRenterPoints());
-    return result;
+    var textReport = new TextReport(_name, _rentals);
+    return textReport.getStatement();
   }
 
-
-  public double getTotalCharge() {
-    return _rentals.stream().mapToDouble(Rental::getCharge).sum();
-  }
-
-  public int getTotalFrequentRenterPoints() {
-    return _rentals.stream().mapToInt(Rental::getFrequentRenterPoints).sum();
-  }
 
 }
