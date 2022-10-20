@@ -10,6 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CustomerTest {
 
+  private final RegularPriceCode REGULAR = new RegularPriceCode();
+  private final Movie GONE_WITH_THE_WIND = new Movie("Gone with the Wind", REGULAR);
+  private final NewReleasePriceCode NEW_RELEASE = new NewReleasePriceCode();
+  private final ChildrenPriceCode CHILDREN = new ChildrenPriceCode();
+  private final Movie MADAGASCAR = new Movie("Madagascar", CHILDREN);
+  private final Movie STAR_WARS = new Movie("Star Wars", NEW_RELEASE);
+
   @Test
   public void testCustomer() {
     Customer c = new CustomerBuilder().build();
@@ -19,8 +26,7 @@ public class CustomerTest {
   @Test
   public void testAddRental() {
     Customer customer2 = new CustomerBuilder().withName("Julia").build();
-    Movie movie1 = new Movie("Gone with the Wind", new RegularPriceCode());
-    Rental rental1 = new Rental(movie1, 3); // 3 day rental
+    Rental rental1 = new Rental(GONE_WITH_THE_WIND, 3); // 3 day rental
     customer2.addRental(rental1);
   }
 
@@ -32,67 +38,63 @@ public class CustomerTest {
 
   @Test
   public void statementForRegularMovie() {
-    Movie movie1 = new Movie("Gone with the Wind", new RegularPriceCode());
-    Rental rental1 = new Rental(movie1, 3); // 3 day rental
-    Customer customer2 =
+    // 3 day rental
+    Customer sallie =
       new CustomerBuilder()
         .withName("Sallie")
-        .withRentals(rental1)
+        .withRentals(new Rental(GONE_WITH_THE_WIND, 3))
         .build();
     String expected = "Rental Record for Sallie\n" +
       "\tGone with the Wind\t3.5\n" +
       "Amount owed is 3.5\n" +
       "You earned 1 frequent renter points";
-    String statement = customer2.statement();
+    String statement = sallie.statement();
     assertEquals(expected, statement);
   }
 
   @Test
   public void statementForNewReleaseMovie() {
-    Movie movie1 = new Movie("Star Wars", new NewReleasePriceCode());
-    Rental rental1 = new Rental(movie1, 3); // 3 day rental
-    Customer customer2 =
+    // 3 day rental
+    Customer sallie =
       new CustomerBuilder()
         .withName("Sallie")
-        .withRentals(rental1)
+        .withRentals(new Rental(STAR_WARS, 3))
         .build();
     String expected = "Rental Record for Sallie\n" +
       "\tStar Wars\t9.0\n" +
       "Amount owed is 9.0\n" +
       "You earned 2 frequent renter points";
-    String statement = customer2.statement();
+    String statement = sallie.statement();
     assertEquals(expected, statement);
   }
 
   @Test
   public void statementForChildrensMovie() {
-    Movie movie1 = new Movie("Madagascar", new ChildrenPriceCode());
-    Rental rental1 = new Rental(movie1, 3); // 3 day rental
-    Customer customer2
+    // 3 day rental
+    Customer sallie
       = new CustomerBuilder()
       .withName("Sallie")
-      .withRentals(rental1)
+      .withRentals(new Rental(MADAGASCAR, 3))
       .build();
     String expected = "Rental Record for Sallie\n" +
       "\tMadagascar\t1.5\n" +
       "Amount owed is 1.5\n" +
       "You earned 1 frequent renter points";
-    String statement = customer2.statement();
+    String statement = sallie.statement();
     assertEquals(expected, statement);
   }
 
   @Test
   public void statementForManyMovies() {
-    Movie movie1 = new Movie("Madagascar", new ChildrenPriceCode());
-    Rental rental1 = new Rental(movie1, 6); // 6 day rental
-    Movie movie2 = new Movie("Star Wars", new NewReleasePriceCode());
-    Rental rental2 = new Rental(movie2, 2); // 2 day rental
-    Movie movie3 = new Movie("Gone with the Wind", new RegularPriceCode());
-    Rental rental3 = new Rental(movie3, 8); // 8 day rental
-    Customer customer1
+
+    Customer david
       = new CustomerBuilder()
       .withName("David")
-      .withRentals(rental1, rental2, rental3)
+      .withRentals(
+        new Rental(MADAGASCAR, 6),
+        new Rental(STAR_WARS, 2),
+        new Rental(GONE_WITH_THE_WIND, 8)
+      )
       .build();
     String expected = "Rental Record for David\n" +
       "\tMadagascar\t6.0\n" +
@@ -100,9 +102,7 @@ public class CustomerTest {
       "\tGone with the Wind\t11.0\n" +
       "Amount owed is 23.0\n" +
       "You earned 4 frequent renter points";
-    String statement = customer1.statement();
+    String statement = david.statement();
     assertEquals(expected, statement);
   }
-
-  //TODO make test for price breaks in code.
 }
