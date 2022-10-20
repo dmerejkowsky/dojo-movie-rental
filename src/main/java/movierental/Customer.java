@@ -34,9 +34,9 @@ public class Customer {
         frequentRenterPoints++;
 
       // show figures for this rental
-      double thisAmount = rental.getCharge();
-      result += "\t" + rental.getMovie().getTitle() + "\t" + thisAmount + "\n";
-      totalAmount += thisAmount;
+      double charge = rental.getCharge();
+      result += "\t" + rental.getMovie().getTitle() + "\t" + charge + "\n";
+      totalAmount += charge;
     }
 
     // add footer lines
