@@ -14,14 +14,19 @@ public class Movie {
     _priceCode = priceCode;
   }
 
+  double regularPrice(int daysRented) {
+    double charge = 0;
+    charge += 2;
+    if (daysRented > 2)
+      charge += (daysRented - 2) * 1.5;
+    return charge;
+  }
+
   double getCharge(int daysRented) {
     double charge = 0;
     switch (getPriceCode()) {
       case Movie.REGULAR:
-        charge += 2;
-        if (daysRented > 2)
-          charge += (daysRented - 2) * 1.5;
-        break;
+        return regularPrice(daysRented);
       case Movie.NEW_RELEASE:
         charge += daysRented * 3;
         break;
