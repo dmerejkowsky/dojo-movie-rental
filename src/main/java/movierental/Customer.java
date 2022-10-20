@@ -46,7 +46,6 @@ public class Customer {
     return result;
   }
 
-  //determine amounts for each line
   double getAmount(Rental rental) {
     double amount = 0;
     switch (rental.getMovie().getPriceCode()) {
