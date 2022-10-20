@@ -35,7 +35,7 @@ public class Movie {
   double getCharge(int daysRented) {
     double charge = 0;
     return switch (getPriceCode()) {
-      case Movie.REGULAR -> regularPrice(daysRented);
+      case Movie.REGULAR -> new RegularPrice().getCharge(daysRented);
       case Movie.NEW_RELEASE -> newReleasePrice(daysRented);
       case Movie.CHILDRENS -> childrenPrice(daysRented);
       default -> charge;
