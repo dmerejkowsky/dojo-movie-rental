@@ -12,6 +12,7 @@ public class Customer {
     _name = name;
   }
 
+
   public void addRental(Rental arg) {
     _rentals.add(arg);
   }
@@ -21,23 +22,33 @@ public class Customer {
   }
 
   public String statement() {
-    String result = "Rental Record for " + getName() + "\n";
-
+    String result = getHeader();
     for (Rental rental : _rentals) {
-      // show figures for this rental
-      var movie = rental.getMovie();
-      double charge = rental.getCharge();
-      result += "\t" + movie.getTitle() + "\t" + charge + "\n";
+      result += getRow(rental);
     }
+    result += getFooter();
+    return result;
+  }
 
+  private String getFooter() {
+    String result = "";
     double totalAmount = getTotalCharge();
     int frequentRenterPoints = getTotalFrequentRenterPoints();
 
     // add footer lines
     result += "Amount owed is " + totalAmount + "\n";
     result += "You earned " + frequentRenterPoints + " frequent renter points";
-
     return result;
+  }
+
+  private String getHeader() {
+    return "Rental Record for " + getName() + "\n";
+  }
+
+  private String getRow(Rental rental) {
+    var movie = rental.getMovie();
+    double charge = rental.getCharge();
+    return "\t" + movie.getTitle() + "\t" + charge + "\n";
   }
 
   public double getTotalCharge() {
