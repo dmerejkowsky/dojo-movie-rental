@@ -10,7 +10,7 @@ public class Rental {
     _daysRented = daysRented;
   }
 
-  double getAmount() {
+  double getCharge() {
     double amount = 0;
     switch (getMovie().getPriceCode()) {
       case Movie.REGULAR:
