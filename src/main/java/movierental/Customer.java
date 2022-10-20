@@ -25,13 +25,14 @@ public class Customer {
 
     for (Rental rental : _rentals) {
       // show figures for this rental
+      var movie = rental.getMovie();
       double charge = rental.getCharge();
-      result += "\t" + rental.getMovie().getTitle() + "\t" + charge + "\n";
+      result += "\t" + movie.getTitle() + "\t" + charge + "\n";
     }
 
     double totalAmount = getTotalCharge();
     int frequentRenterPoints = getTotalFrequentRenterPoints();
-    
+
     // add footer lines
     result += "Amount owed is " + totalAmount + "\n";
     result += "You earned " + frequentRenterPoints + " frequent renter points";
