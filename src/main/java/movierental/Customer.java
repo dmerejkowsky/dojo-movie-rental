@@ -23,8 +23,7 @@ public class Customer {
 
   public String statement() {
     var textReport = new TextReport(_name, _rentals);
-    return textReport.getStatement();
+    return textReport.statement();
   }
-
 
 }
