@@ -1,12 +1,6 @@
 package movierental;
 
-import java.util.List;
-
 public class TextReport extends Report {
-
-  public TextReport(String customerName, List<Rental> rentals) {
-    super(rentals, customerName);
-  }
 
   @Override
   public String header() {
@@ -23,8 +17,8 @@ public class TextReport extends Report {
   @Override
   public String footer() {
     String result = "";
-    result += "Amount owed is " + getTotalCharge() + "\n";
-    result += "You earned " + getTotalFrequentRenterPoints() + " frequent renter points";
+    result += "Amount owed is " + totalCharge() + "\n";
+    result += "You earned " + totalFrequentRenterPoints() + " frequent renter points";
     return result;
   }
 

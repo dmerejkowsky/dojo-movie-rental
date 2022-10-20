@@ -1,13 +1,17 @@
 package movierental;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Report {
-  protected final List<Rental> _rentals;
-  protected final String _customerName;
+  protected List<Rental> _rentals = new ArrayList<>();
+  protected String _customerName = "";
 
-  public Report(List<Rental> rentals, String customerName) {
+  public void setRentals(List<Rental> rentals) {
     _rentals = rentals;
+  }
+
+  public void setCustomerName(String customerName) {
     _customerName = customerName;
   }
 
@@ -17,7 +21,7 @@ public abstract class Report {
 
   public abstract String row(Rental rental);
 
-  public String statement() {
+  public String generate() {
     String result = header();
     for (Rental rental : _rentals) {
       result += row(rental);
@@ -27,11 +31,11 @@ public abstract class Report {
   }
 
 
-  public double getTotalCharge() {
+  public double totalCharge() {
     return _rentals.stream().mapToDouble(Rental::getCharge).sum();
   }
 
-  public int getTotalFrequentRenterPoints() {
+  public int totalFrequentRenterPoints() {
     return _rentals.stream().mapToInt(Rental::getFrequentRenterPoints).sum();
   }
 }

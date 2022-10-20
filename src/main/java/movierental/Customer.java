@@ -21,9 +21,9 @@ public class Customer {
     return _name;
   }
 
-  public String statement() {
-    var textReport = new TextReport(_name, _rentals);
-    return textReport.statement();
+  public String statement(Report report) {
+    report.setCustomerName(_name);
+    report.setRentals(_rentals);
+    return report.generate();
   }
-
 }

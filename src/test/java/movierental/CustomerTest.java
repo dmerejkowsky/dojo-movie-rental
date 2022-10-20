@@ -3,6 +3,7 @@ package movierental;
 import movierental.pricecodes.ChildrenPriceCode;
 import movierental.pricecodes.NewReleasePriceCode;
 import movierental.pricecodes.RegularPriceCode;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +17,12 @@ public class CustomerTest {
   private final ChildrenPriceCode CHILDREN = new ChildrenPriceCode();
   private final Movie MADAGASCAR = new Movie("Madagascar", CHILDREN);
   private final Movie STAR_WARS = new Movie("Star Wars", NEW_RELEASE);
+  private TextReport _textReport;
+
+  @BeforeEach
+  void setUp() {
+    _textReport = new TextReport();
+  }
 
   @Test
   public void testCustomer() {
@@ -48,7 +55,7 @@ public class CustomerTest {
       "\tGone with the Wind\t3.5\n" +
       "Amount owed is 3.5\n" +
       "You earned 1 frequent renter points";
-    String statement = sallie.statement();
+    String statement = sallie.statement(_textReport);
     assertEquals(expected, statement);
   }
 
@@ -64,8 +71,7 @@ public class CustomerTest {
       "\tStar Wars\t9.0\n" +
       "Amount owed is 9.0\n" +
       "You earned 2 frequent renter points";
-    String statement = sallie.statement();
-    assertEquals(expected, statement);
+    String statement = sallie.statement(_textReport);
   }
 
   @Test
@@ -80,7 +86,7 @@ public class CustomerTest {
       "\tMadagascar\t1.5\n" +
       "Amount owed is 1.5\n" +
       "You earned 1 frequent renter points";
-    String statement = sallie.statement();
+    String statement = sallie.statement(_textReport);
     assertEquals(expected, statement);
   }
 
@@ -102,7 +108,7 @@ public class CustomerTest {
       "\tGone with the Wind\t11.0\n" +
       "Amount owed is 23.0\n" +
       "You earned 4 frequent renter points";
-    String statement = david.statement();
+    String statement = david.statement(_textReport);
     assertEquals(expected, statement);
   }
 }
