@@ -1,4 +1,4 @@
-package movierental;
+package movierental.pricecodes;
 
 public interface PriceCode {
   double getCharge(int daysRented);

@@ -1,4 +1,4 @@
-package movierental;
+package movierental.pricecodes;
 
 public class NewReleasePriceCode implements PriceCode {
   @Override

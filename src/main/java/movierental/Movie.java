@@ -1,5 +1,7 @@
 package movierental;
 
+import movierental.pricecodes.PriceCode;
+
 public class Movie {
   private final String _title;
   private final PriceCode _priceCode;

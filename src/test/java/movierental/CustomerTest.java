@@ -1,5 +1,8 @@
 package movierental;
 
+import movierental.pricecodes.ChildrenPriceCode;
+import movierental.pricecodes.NewReleasePriceCode;
+import movierental.pricecodes.RegularPriceCode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
