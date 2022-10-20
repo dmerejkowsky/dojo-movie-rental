@@ -13,31 +13,14 @@ public class Movie {
     _title = title;
     _priceCode = priceCode;
   }
-
-  double regularPrice(int daysRented) {
-    double charge = 2;
-    if (daysRented > 2)
-      charge += (daysRented - 2) * 1.5;
-    return charge;
-  }
-
-  double newReleasePrice(int daysRented) {
-    return daysRented * 3;
-  }
-
-  double childrenPrice(int daysRented) {
-    double charge = 1.5;
-    if (daysRented > 3)
-      charge += (daysRented - 3) * 1.5;
-    return charge;
-  }
+  
 
   double getCharge(int daysRented) {
     double charge = 0;
     return switch (getPriceCode()) {
-      case Movie.REGULAR -> new RegularPrice().getCharge(daysRented);
-      case Movie.NEW_RELEASE -> newReleasePrice(daysRented);
-      case Movie.CHILDRENS -> childrenPrice(daysRented);
+      case Movie.REGULAR -> new RegularPriceCode().getCharge(daysRented);
+      case Movie.NEW_RELEASE -> new NewReleasePriceCode().getCharge(daysRented);
+      case Movie.CHILDRENS -> new ChildrenPriceCode().getCharge(daysRented);
       default -> charge;
     };
   }

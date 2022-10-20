@@ -1,5 +1,5 @@
 package movierental;
 
-public interface Price {
+public interface PriceCode {
   double getCharge(int daysRented);
 }

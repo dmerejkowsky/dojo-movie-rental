@@ -1,6 +1,6 @@
 package movierental;
 
-public class RegularPrice implements Price {
+public class RegularPriceCode implements PriceCode {
   @Override
   public double getCharge(int daysRented) {
     double charge = 2;
