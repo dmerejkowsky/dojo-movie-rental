@@ -41,5 +41,16 @@ public class Customer {
     return result;
   }
 
+  public double getTotalCharge() {
+    double totalAmount = 0;
+    
+    for (Rental rental : _rentals) {
+      double charge = rental.getCharge();
+      totalAmount += charge;
+    }
+
+    return totalAmount;
+  }
+
 
 }
