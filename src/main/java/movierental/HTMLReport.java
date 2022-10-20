@@ -1,6 +1,10 @@
 package movierental;
 
 public class HTMLReport extends Report {
+  public HTMLReport(Customer customer) {
+    super(customer);
+  }
+
   @Override
   public String header() {
     return String.format("<h1>Report for %s</h1>\n<ul>\n", _customerName);

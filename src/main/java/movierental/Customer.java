@@ -21,9 +21,8 @@ public class Customer {
     return _name;
   }
 
-  public String statement(Report report) {
-    report.setCustomerName(_name);
-    report.setRentals(_rentals);
-    return report.generate();
+
+  public List<Rental> rentals() {
+    return _rentals;
   }
 }

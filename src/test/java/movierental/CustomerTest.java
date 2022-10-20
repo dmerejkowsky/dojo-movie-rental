@@ -17,11 +17,9 @@ public class CustomerTest {
   private final ChildrenPriceCode CHILDREN = new ChildrenPriceCode();
   private final Movie MADAGASCAR = new Movie("Madagascar", CHILDREN);
   private final Movie STAR_WARS = new Movie("Star Wars", NEW_RELEASE);
-  private TextReport _textReport;
 
   @BeforeEach
   void setUp() {
-    _textReport = new TextReport();
   }
 
   @Test
@@ -55,7 +53,7 @@ public class CustomerTest {
       "\tGone with the Wind\t3.5\n" +
       "Amount owed is 3.5\n" +
       "You earned 1 frequent renter points";
-    String statement = sallie.statement(_textReport);
+    String statement = new TextReport(sallie).generate();
     assertEquals(expected, statement);
   }
 
@@ -71,7 +69,8 @@ public class CustomerTest {
       "\tStar Wars\t9.0\n" +
       "Amount owed is 9.0\n" +
       "You earned 2 frequent renter points";
-    String statement = sallie.statement(_textReport);
+    String statement = new TextReport(sallie).generate();
+    assertEquals(expected, statement);
   }
 
   @Test
@@ -86,7 +85,7 @@ public class CustomerTest {
       "\tMadagascar\t1.5\n" +
       "Amount owed is 1.5\n" +
       "You earned 1 frequent renter points";
-    String statement = sallie.statement(_textReport);
+    String statement = new TextReport(sallie).generate();
     assertEquals(expected, statement);
   }
 
@@ -108,7 +107,7 @@ public class CustomerTest {
       "\tGone with the Wind\t11.0\n" +
       "Amount owed is 23.0\n" +
       "You earned 4 frequent renter points";
-    String statement = david.statement(_textReport);
+    String statement = new TextReport(david).generate();
     assertEquals(expected, statement);
   }
 }

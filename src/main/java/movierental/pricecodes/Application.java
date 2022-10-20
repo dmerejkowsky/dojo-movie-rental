@@ -12,7 +12,7 @@ public class Application {
     var customer = new Customer("Sallie");
     var rental = new Rental(movie, 3);
     customer.addRental(rental);
-    var html = customer.statement(new HTMLReport());
+    var html = new HTMLReport(customer).generate();
     System.out.println(html);
   }
 }

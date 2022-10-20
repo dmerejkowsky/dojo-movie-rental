@@ -1,18 +1,14 @@
 package movierental;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Report {
-  protected List<Rental> _rentals = new ArrayList<>();
-  protected String _customerName = "";
+  protected final String _customerName;
+  private final List<Rental> _rentals;
 
-  public void setRentals(List<Rental> rentals) {
-    _rentals = rentals;
-  }
-
-  public void setCustomerName(String customerName) {
-    _customerName = customerName;
+  public Report(Customer customer) {
+    _customerName = customer.getName();
+    _rentals = customer.rentals();
   }
 
   public abstract String header();

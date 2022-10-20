@@ -2,6 +2,10 @@ package movierental;
 
 public class TextReport extends Report {
 
+  TextReport(Customer customer) {
+    super(customer);
+  }
+
   @Override
   public String header() {
     return "Rental Record for " + _customerName + "\n";
