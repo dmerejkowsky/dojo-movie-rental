@@ -8,11 +8,7 @@ public class NewReleasePriceCode implements PriceCode {
 
   @Override
   public int getFrequentRenterPoints(int daysRented) {
-    if (daysRented > 1) {
-      return 2;
-    } else {
-      return 1;
-    }
+    return daysRented > 1 ? 2 : 1;
   }
 
 }
