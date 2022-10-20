@@ -12,7 +12,7 @@ public class Rental {
 
   int getFrequentRenterPoints() {
     // add bonus for a two-day new release rental
-    if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
+    if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1)
       return 2;
     else {
       return 1;
@@ -24,16 +24,16 @@ public class Rental {
     switch (getMovie().getPriceCode()) {
       case Movie.REGULAR:
         charge += 2;
-        if (getDaysRented() > 2)
-          charge += (getDaysRented() - 2) * 1.5;
+        if (_daysRented > 2)
+          charge += (_daysRented - 2) * 1.5;
         break;
       case Movie.NEW_RELEASE:
-        charge += getDaysRented() * 3;
+        charge += _daysRented * 3;
         break;
       case Movie.CHILDRENS:
         charge += 1.5;
-        if (getDaysRented() > 3)
-          charge += (getDaysRented() - 3) * 1.5;
+        if (_daysRented > 3)
+          charge += (_daysRented - 3) * 1.5;
         break;
     }
     return charge;
