@@ -34,15 +34,12 @@ public class Movie {
 
   double getCharge(int daysRented) {
     double charge = 0;
-    switch (getPriceCode()) {
-      case Movie.REGULAR:
-        return regularPrice(daysRented);
-      case Movie.NEW_RELEASE:
-        return newReleasePrice(daysRented);
-      case Movie.CHILDRENS:
-        return childrenPrice(daysRented);
-    }
-    return charge;
+    return switch (getPriceCode()) {
+      case Movie.REGULAR -> regularPrice(daysRented);
+      case Movie.NEW_RELEASE -> newReleasePrice(daysRented);
+      case Movie.CHILDRENS -> childrenPrice(daysRented);
+      default -> charge;
+    };
   }
 
   int getFrequentRenterPoints(int daysRented) {
