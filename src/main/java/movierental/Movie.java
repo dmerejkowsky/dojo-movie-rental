@@ -15,10 +15,20 @@ public class Movie {
   }
 
   double regularPrice(int daysRented) {
-    double charge = 0;
-    charge += 2;
+    double charge = 2;
     if (daysRented > 2)
       charge += (daysRented - 2) * 1.5;
+    return charge;
+  }
+
+  double newReleasePrice(int daysRented) {
+    return daysRented * 3;
+  }
+
+  double childrenPrice(int daysRented) {
+    double charge = 1.5;
+    if (daysRented > 3)
+      charge += (daysRented - 3) * 1.5;
     return charge;
   }
 
@@ -28,13 +38,9 @@ public class Movie {
       case Movie.REGULAR:
         return regularPrice(daysRented);
       case Movie.NEW_RELEASE:
-        charge += daysRented * 3;
-        break;
+        return newReleasePrice(daysRented);
       case Movie.CHILDRENS:
-        charge += 1.5;
-        if (daysRented > 3)
-          charge += (daysRented - 3) * 1.5;
-        break;
+        return childrenPrice(daysRented);
     }
     return charge;
   }
