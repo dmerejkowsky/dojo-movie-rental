@@ -1,9 +1,6 @@
-package movierental.pricecodes;
+package movierental;
 
-import movierental.Customer;
-import movierental.HTMLReport;
-import movierental.Movie;
-import movierental.Rental;
+import movierental.pricecodes.RegularPriceCode;
 
 public class Application {
   public static void main(String[] args) {
