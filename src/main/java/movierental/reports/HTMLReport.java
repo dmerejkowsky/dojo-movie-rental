@@ -1,4 +1,7 @@
-package movierental;
+package movierental.reports;
+
+import movierental.Customer;
+import movierental.Rental;
 
 public class HTMLReport extends Report {
   public HTMLReport(Customer customer) {

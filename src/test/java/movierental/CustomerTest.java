@@ -3,6 +3,7 @@ package movierental;
 import movierental.pricecodes.ChildrenPriceCode;
 import movierental.pricecodes.NewReleasePriceCode;
 import movierental.pricecodes.RegularPriceCode;
+import movierental.reports.TextReport;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

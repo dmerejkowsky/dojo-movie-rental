@@ -10,11 +10,11 @@ public class Rental {
     _daysRented = daysRented;
   }
 
-  int getFrequentRenterPoints() {
+  public int getFrequentRenterPoints() {
     return _movie.getFrequentRenterPoints(_daysRented);
   }
 
-  double getCharge() {
+  public double getCharge() {
     return _movie.getCharge(_daysRented);
   }
 

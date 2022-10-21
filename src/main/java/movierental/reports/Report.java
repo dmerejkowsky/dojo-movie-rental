@@ -1,4 +1,7 @@
-package movierental;
+package movierental.reports;
+
+import movierental.Customer;
+import movierental.Rental;
 
 import java.util.List;
 

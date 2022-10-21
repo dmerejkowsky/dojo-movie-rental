@@ -1,8 +1,11 @@
-package movierental;
+package movierental.reports;
+
+import movierental.Customer;
+import movierental.Rental;
 
 public class TextReport extends Report {
 
-  TextReport(Customer customer) {
+  public TextReport(Customer customer) {
     super(customer);
   }
 
